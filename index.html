@@ -1,60 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="https://unpkg.com/@google/model-viewer"></script>
-    <title>Galeria 3D com AR</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; }
-        .item { margin: 20px; }
-        model-viewer { width: 300px; height: 400px; }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Visualizador 3D com AR</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body { margin: 0; }
+    model-viewer {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
-    <h1>Galeria de Modelos 3D com AR</h1>
-    <div class="container">
-        <div class="item">
-            <model-viewer src="DNA.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate></model-viewer>
-            <p>Modelo 1</p>
-        </div>
-        <div class="item">
-            <model-viewer src="Computer_Case.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate></model-viewer>
-            <p>Modelo 2</p>
-        </div>
-        <div class="item">
-            <model-viewer src="cpu.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate></model-viewer>
-            <p>Modelo 3</p>
-        </div>
-        <div class="item">
-            <model-viewer src="Mouh.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate></model-viewer>
-            <p>Modelo 4</p>
-        </div>
-        <div class="item">
-            <model-viewer src="cerebro.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate></model-viewer>
-                <p>Modelo 5</p>
-        </div>
-        <div class="item">
-            <model-viewer src="cpu.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate></model-viewer>
-            <p>Modelo 6</p>
-        </div>
-        <div class="item">
-            <model-viewer src="Seed_germ.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate></model-viewer>
-            <p>Modelo 7</p>
-        </div>
-        <div class="item">
-            <model-viewer src="Humpback_Whale.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate></model-viewer>
-            <p>Modelo 8</p>
-        </div>
-        <div class="item">
-            <model-viewer src="Crocodile.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate></model-viewer>
-            <p>Modelo 9</p>
-        </div>
-        <div class="item">
-            <model-viewer src="DNA.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate></model-viewer>
-            <p>Modelo 10</p>
-        </div>
-    </div>
+
+<model-viewer
+  id="viewer"
+  ar
+  ar-modes="scene-viewer webxr quick-look"
+  auto-rotate
+  camera-controls
+  alt="Modelo 3D">
+</model-viewer>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const modelo = params.get("modelo");
+
+  // Arquivos diretamente na raiz da pasta galeria3D/
+  const modelos = {
+    aula1: "Crocodile.glb",
+    aula2: "DNA.glb",
+    aula3: "cerebro.glb",
+    aula4: "Mouh.glb",
+    aula5: "cpu.glb"
+    // adicione mais se quiser
+  };
+
+  const viewer = document.getElementById("viewer");
+  if (modelo && modelos[modelo]) {
+    viewer.src = modelos[modelo];
+  } else {
+    viewer.innerHTML = "<p>Modelo não encontrado.</p>";
+  }
+</script>
+
 </body>
 </html>
