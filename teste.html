@@ -2,8 +2,24 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <title>Teste 3D</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* 100% da altura da tela */
+      background-color: #f0f0f0;
+    }
+
+    model-viewer {
+      width: 80vw; /* 80% da largura da tela */
+      height: 80vh; /* 80% da altura da tela */
+    }
+  </style>
 </head>
 <body>
   <model-viewer 
